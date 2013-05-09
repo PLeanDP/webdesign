@@ -17,7 +17,7 @@
 </div>
 
 	<?php
-		$msg = $this->webdesign_model->form_validation__string_convert("out",$msg);
+		$msg = $this->webdesign_model__main->form_validation__string_convert("out",$msg);
 	?>
 
 <script>
