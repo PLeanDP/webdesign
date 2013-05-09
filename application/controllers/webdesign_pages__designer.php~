@@ -29,21 +29,19 @@ class Webdesign_pages__designer extends CI_Controller {
 				redirect($add, 'refresh');
 		}
 		else
-		{				
-			/*
-				$data['page_title'] = 'admin';
-				$data['big_banner'] = 0;		
-				$this->load->view('template/header', $data);
-				$this->load->view('webdesign__main/main_header', $data);			
-				//$this->load->view('webdesign__admin/forms/login', $data);
-				$this->load->view('template/footer', $data);
-			*/
+		{
+			//Checks the designers session
+			if(!$des_id = $accmgr->check_session())
+			{
+				$add = "webdesign_designer/login";
+				redirect($add, 'refresh');
+			}			
 			
 			$heddata['cover'] = 0;
 			$avdata['avatar'] = 0;
 			$galdata['gallery'] = 0;
 			$desdata['designer'] = 0;
-			$accdata['account'] = 0;
+			$accdata['account'] = 0;									
 			
 			$this->load->view('webdesign__designer/header',$heddata);
 			$this->load->view('webdesign__designer/avatar',$avdata);
@@ -79,20 +77,7 @@ class Webdesign_pages__designer extends CI_Controller {
 
 
 	public function submit_form__designer_login()
-		{
-		$valid = $this->webdesign_model__designer->designer_login__validate();
-
-		if($valid == 1)
-			{
-			sessing create
-				redirect
-			}
-		else
-			{
-
-			}
-		}
-
-
-
+	{						
+		$valid = $this->webdesign_model__designer->designer_login__validate();		
+	}
 }

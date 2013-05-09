@@ -35,6 +35,7 @@ class Webdesign_model__designer extends CI_Model {
 
 	public function designer_login__validate()
 		{
+			
 		$designer = $this->input->post('des_username');
 		$password = $this->input->post('des_password');
 
@@ -54,8 +55,8 @@ class Webdesign_model__designer extends CI_Model {
 				}
 			else
 				{			
-				$accmgr->create_session($des_id);
-				return 1;
+					$designer_accmgr->create_session($des_id);
+					return 1;
 				//redirect('designer');	
 				}
 

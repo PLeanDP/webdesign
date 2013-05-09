@@ -128,9 +128,7 @@ class Webdesign_pages__admin extends CI_Controller {
 			$this->load->view('webdesign__admin/designer_body__sites', $data);
 		
 			$this->load->view('template/footer', $data);
-			}
-
-		
+			}		
 		}
 
 
