@@ -8,46 +8,53 @@ class Webdesign_pages__designer extends CI_Controller {
 		$this->load->model('webdesign_model__main');
 		$this->load->model('webdesign_model__designer');
 		$this->load->database();
+		
+		//Loads all primary libraries
+		$this->load->library('accountmanager');
+		$this->load->library('designermanager');
+		$this->load->library('gallerymanager');
 
 		$this->load->helper('form');
 		$this->load->library('form_validation');
 		}
 
 
-
-
 	public function designer()
-		{
+	{
 		$logged = $this->webdesign_model__designer->designer_login__session_check();
 		
 		if ($logged == 0)
-			{
+		{
 			$add = "webdesign_designer/login";
 				redirect($add, 'refresh');
-			}
-		else
-			{
-			$data['page_title'] = 'admin';
-			$data['big_banner'] = 0;
-		
-			$this->load->view('template/header', $data);
-			$this->load->view('webdesign__main/main_header', $data);
-			
-			//$this->load->view('webdesign__admin/forms/login', $data);
-
-			$this->load->view('template/footer', $data);
-			}
-
 		}
-
-
-
-
-
-
+		else
+		{				
+			/*
+				$data['page_title'] = 'admin';
+				$data['big_banner'] = 0;		
+				$this->load->view('template/header', $data);
+				$this->load->view('webdesign__main/main_header', $data);			
+				//$this->load->view('webdesign__admin/forms/login', $data);
+				$this->load->view('template/footer', $data);
+			*/
+			
+			$heddata['cover'] = 0;
+			$avdata['avatar'] = 0;
+			$galdata['gallery'] = 0;
+			$desdata['designer'] = 0;
+			$accdata['account'] = 0;
+			
+			$this->load->view('webdesign__designer/header',$heddata);
+			$this->load->view('webdesign__designer/avatar',$avdata);
+			$this->load->view('webdesign__designer/gallery',$galdata);
+			$this->load->view('webdesign__designer/info',$desdata);
+			$this->load->view('webdesign__designer/account',$accdata);
+		}
+	}
 
 	public function login()
-		{
+	{
 		$logged = $this->webdesign_model__designer->designer_login__session_check();
 		
 		if ($logged == 1)
