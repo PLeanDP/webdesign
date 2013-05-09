@@ -1,0 +1,2 @@
+['cover']
+['avatar']

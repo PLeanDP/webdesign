@@ -73,8 +73,17 @@ class Webdesign_pages__designer extends CI_Controller {
 
 	public function submit_form__designer_login()
 		{
-		
+		$valid = $this->webdesign_model__designer->designer_login__validate();
 
+		if($valid == 1)
+			{
+			sessing create
+				redirect
+			}
+		else
+			{
+
+			}
 		}
 
 

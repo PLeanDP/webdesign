@@ -45,6 +45,20 @@ create table if not exists DESIGNER_GALLERY
 	primary key(image_id,des_id)
 	);
 
+create table if not exists DESIGNER_COVER(
+	des_id int not null,
+	image_id int not null auto_increment,	
+	file_name varchar(30) null,		
+	primary key(image_id,des_id)
+);
+
+create table if not exists DESIGNER_AVATAR(
+	des_id int not null,
+	image_id int not null auto_increment,	
+	file_name varchar(30) null,		
+	primary key(image_id,des_id)
+);
+
 
 
 create table if not exists REQUEST
@@ -72,5 +86,7 @@ create table if not exists REQUEST_DESIGNER
 
 alter table DESIGNER_ACCOUNT add constraint foreign key(des_id) references DESIGNER(des_id);
 alter table DESIGNER_GALLERY add constraint foreign key(des_id) references DESIGNER(des_id);
+alter table DESIGNER_COVER add constraint foreign key(des_id) references DESIGNER(des_id);
+alter table DESIGNER_AVATAR add constraint foreign key(des_id) references DESIGNER(des_id);
 
 alter table REQUEST_DESIGNER add constraint foreign key(request_id) references REQUEST(request_id);
