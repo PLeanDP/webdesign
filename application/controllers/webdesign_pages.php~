@@ -1,0 +1,112 @@
+<?php
+
+class Webdesign_pages extends CI_Controller {
+
+	public function __construct()
+	{
+		parent::__construct();
+		$this->load->model('webdesign_model');
+		$this->load->database();
+
+		$this->load->helper('form');
+		$this->load->library('form_validation');
+	}
+
+
+	
+
+
+	public function webdesign($outcome = NULL, $title = NULL ,$msg = null)
+		{
+		$data['page_title'] = 'webdesign';
+		$data['outcome'] = $outcome;
+		$data['title'] = $title;
+		$data['msg'] = $msg;
+		$data['designers'] = $this->webdesign_model->get_designers_for_main_listing();
+		
+			$this->load->view('template/header', $data);
+			$this->load->view('template/main_header', $data);
+			$this->load->view('template/partners_bridge', $data);
+			$this->load->view('template/partners_body', $data);
+			$this->load->view('template/footer', $data);
+			$this->load->view('template/forms/chosen_designer', $data);
+			$this->load->view('template/forms/reg_new_designer', $data);
+			
+		if ($outcome == NULL)
+			{ }
+		else
+			{
+			$this->load->view('template/forms/outcome', $data);
+			}
+
+		}
+
+
+
+
+
+	public function webdesign__submit_form__chosen_designer()
+		{
+		$success = $this->webdesign_model->chosen_designer__sub();
+		$add = "webdesign/";
+		
+
+		if ($success == 1)
+			{
+			$add .= "1/";
+			$add .= "request/";
+			
+			$success = "Your request has been sent. We will send you further information shortly.";
+				$success  = $this->webdesign_model->form_validation__string_convert("in",$success);
+
+			$add .= $success;
+			//$add .= "Your request has been sent. We will send you the designers' contact information shortly.";
+			}
+		else
+			{
+			$add .= "0/";
+			$add .= "request/";
+			$add .= $success;
+			}
+
+		$data['page_title'] = 'webdesign';
+		
+		redirect($add, 'refresh');
+
+
+		}
+
+
+	public function webdesign__submit_form__new_designer()
+		{
+		$success = $this->webdesign_model->new_designer__sub();
+		$add = "webdesign/";
+		
+		if ($success == 1)
+			{
+			$add .= "1/";
+			$add .= "designer_registration/";
+			
+			$success = "Your registration is being reviewed. You will recieve a notification about you registration. youre account would be activated upon approval";
+				$success  = $this->webdesign_model->form_validation__string_convert("in",$success);
+
+			$add .= $success;
+			//$add .= "Your request has been sent. We will send you the designers' contact information shortly.";
+			}
+		else
+			{
+			$add .= "0/";
+			$add .= "designer_registration/";
+			$add .= $success;
+			}
+
+		$data['page_title'] = 'webdesign';
+		
+		redirect($add, 'refresh');
+			
+		}
+
+
+
+
+}

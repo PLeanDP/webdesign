@@ -1,0 +1,9 @@
+
+<div class="partners_bridge">
+	<img src="<?php echo base_url();?>/images/ocpheadr.png" style="margin-top:0.7em;">
+	
+
+	<a href="link me"><div class="button">register as a new designer</div></a>
+	<a href="link me"><div class="button">submit a request</div></a>	
+</div>
+

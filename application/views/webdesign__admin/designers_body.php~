@@ -1,0 +1,46 @@
+<div id="partners_body">
+
+
+<?php foreach ($pending_designers as $designer){ ?>
+<?php
+
+$id = $designer['the_id'];
+$alias = $designer['alias'];
+$thumbnail = $designer['thumbnail'];
+$location = $designer['location'];
+
+?>
+
+	<div class="partner_container" id="<?=$alias?>">
+		<div class="selection_bridge" onclick="select_designer('<?=$alias?>',this);">select designer</div>
+		<a class="fancy_<?=$id;?>" href="<?=base_url() . 'designers_sites/'  . $thumbnail;?>"><img class="partner__img" src="<?=base_url();?>./designers_sites/<?=$thumbnail?>" /></a>
+		<div class="partner__label">designs by<span class="name"><?=$alias?></span><span class="location"><?=$location?></span></div>
+	</div>
+
+	
+<?php // sets fancy box for names
+		$this->webdesign_model__main->set_fancybox_for_designers($id);
+		?>
+
+
+<?php }?>
+
+
+
+
+	<?php
+		for($count = 1; $count <= 10; $count++)
+			{
+			?>
+			<div class="partner_container" id="des_<?=$count?>">
+				<div class="selection_bridge" onclick="select_designer('des_<?=$count?>',this,'cb_des_<?=$count?>');">select designer</div>
+				<img class="partner__img" src="<?=base_url();?>./images/1.jpg" />		
+				<div class="partner__label">designs by<span class="name">des <?=$count?></span><span class="location">location</span></div>
+			</div>
+			<?php
+			}
+	?>
+
+	
+	<div style="clear:both"> </div>
+</div>

@@ -1,0 +1,117 @@
+<?php
+class Webdesign_pages__main extends CI_Controller {
+
+	public function __construct()
+	{
+		parent::__construct();
+		$this->load->model('webdesign_model__main');
+		$this->load->database();
+
+		$this->load->helper('form');
+		$this->load->library('form_validation');
+	}
+
+
+
+	public function webdesign($outcome = NULL, $title = NULL ,$msg = null)
+		{
+		$data['page_title'] = 'webdesign';
+		$data['outcome'] = $outcome;
+		$data['title'] = $title;
+		$data['msg'] = $msg;
+		$data['designers'] = $this->webdesign_model__main->get_designers_for_main_listing();
+		$data['big_banner'] = 1;
+		
+			$this->load->view('template/header', $data);
+			$this->load->view('webdesign__main/main_header', $data);
+			$this->load->view('webdesign__main/partners_bridge', $data);
+			$this->load->view('webdesign__main/partners_body', $data);
+			$this->load->view('template/footer', $data);
+			$this->load->view('webdesign__main/forms/chosen_designer', $data);
+			$this->load->view('webdesign__main/forms/reg_new_designer', $data);
+			
+		if ($outcome == NULL)
+			{ }
+		else
+			{
+			$this->load->view('webdesign__main/forms/outcome', $data);
+			}
+
+		}
+
+
+
+
+
+
+/*
+functions for the two forms
+
+could be done on a single functions, but then it would complicate life..filling almost every other line with ifs is a big mess rather than two straight forward separated functions
+*/
+
+
+	public function submit_form__chosen_designer()
+		{
+		$success = $this->webdesign_model__main->chosen_designer__sub();
+		$add = "webdesign/";
+		
+
+		if ($success == 1)
+			{
+			$add .= "1/";
+			$add .= "request/";
+			
+			$success = "Your request has been sent. We will send you further information shortly.";
+				$success  = $this->webdesign_model__main->form_validation__string_convert("in",$success);
+
+			$add .= $success;
+			}
+		else
+			{
+			$add .= "0/";
+			$add .= "request/";
+			$add .= $success;
+			}
+
+		$data['page_title'] = 'webdesign';
+		
+		redirect($add, 'refresh');
+
+
+		}
+
+
+	public function submit_form__new_designer()
+		{
+		$success = $this->webdesign_model__main->new_designer__sub();
+		$add = "webdesign/";
+		
+		if ($success == 1)
+			{
+			$add .= "1/";
+			$add .= "designer_registration/";
+			
+			$success = "Your registration is being reviewed. You will recieve a notification about you registration. youre account would be activated upon approval";
+				$success  = $this->webdesign_model__main->form_validation__string_convert("in",$success);
+
+			$add .= $success;
+			}
+		else
+			{
+			$add .= "0/";
+			$add .= "designer_registration/";
+			$add .= $success;
+			}
+
+		$data['page_title'] = 'webdesign';
+		
+		redirect($add, 'refresh');	
+		}
+
+
+
+
+
+
+}

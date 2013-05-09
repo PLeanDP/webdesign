@@ -1,0 +1,4 @@
+<div id="main_header">
+		<img src="<?php echo base_url();?>/images/dotPHwebdesignlog.png">
+		<img style="width:65em;" src="<?php echo base_url();?>/images/cpbannergpw.png">
+</div>
