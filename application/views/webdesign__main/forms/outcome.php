@@ -5,7 +5,7 @@
 <div id="form_outcome">
 
 	<fieldset class="form_container">
-		<legend onclick="close_form(1,'http://localhost/dotPH__webdesign/index.php/webdesign')" title="Close">X</legend>
+		<legend onclick="close_form(1,'http://localhost/webdesign__beta/index.php/webdesign')" title="Close">X</legend>
 		<h1 id="form_outcome_title">Title - Status</h1>
 		<div id="form_outcome_msg">
 			msg
